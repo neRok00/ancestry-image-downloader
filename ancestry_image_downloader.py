@@ -246,7 +246,6 @@ def process_apids(apid_matches, *, session, csv_writer, logger):
             fields['extension'] = ''
             logger.info("    > Writing results to CSV file...")
             csv_writer.writerow(fields)
-            processed_iids[iid].apids.append(apid)
             logger.info("    > Finished!")
             continue
             
