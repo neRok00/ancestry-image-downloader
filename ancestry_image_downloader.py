@@ -23,7 +23,7 @@ THIS SOFTWARE.
 # Note, usage of this script is prohibited in the Ancestry Terms and Conditions.
 # USAGE OF THIS SCRIPT IS AT YOUR OWN RISK, AND YOU ACCEPT ALL LIABILTY IN DOING SO!
 #
-# Version 1.2, released 16 Sep 2016.
+# Version 1.3, released 16 Sep 2016.
 ################################################################################
 
 USERNAME = ""
@@ -206,7 +206,7 @@ def process_apids(apid_matches, *, session, csv_writer, logger):
     problem_apids = set()
     
     # Process each apid.
-    for i, match in enumerate(apid_matches[0:2], start=1):
+    for i, match in enumerate(apid_matches, start=1):
 
         sour, apid, indiv, dbid, pid = match
 
