@@ -22,6 +22,8 @@ THIS SOFTWARE.
 # http://neRok00.github.io/ancestry-image-downloader
 # Note, usage of this script is prohibited in the Ancestry Terms and Conditions.
 # USAGE OF THIS SCRIPT IS AT YOUR OWN RISK, AND YOU ACCEPT ALL LIABILTY IN DOING SO!
+#
+# Version 1.2, released 16 Sep 2016.
 ################################################################################
 
 USERNAME = ""
@@ -191,7 +193,7 @@ def process_apids(apid_matches, *, session, csv_writer, logger):
 
     total_apid_matches = len(apid_matches)
     processed_apids = defaultdict(list) # A dict with dbids as keys, and items as a list of pids.
-    iid_regex = re.compile(r"var iid='([\w\d_-]+)';")
+    iid_regex = re.compile(r"var iid='([^\s']+)';")
     processed_iids = {} # A dict with IID's as keys, and the following object as items.
     
     # Nametuple didn't allow setting the extension after init, so replace with object.
@@ -241,7 +243,8 @@ def process_apids(apid_matches, *, session, csv_writer, logger):
         match = iid_regex.search(record_page.text)
         
         if not match:
-            logger.info("    > The record does not have an image.")
+            # TODO, more and better checks could be performed rather than presuming there is no image at this stage, such as checking for a thumbnail.
+            logger.info("    > An image ID could not be found. Either the record does not have an image, or the record page was in an unexpected format.")
             fields['image'] = ''
             fields['extension'] = ''
             logger.info("    > Writing results to CSV file...")
