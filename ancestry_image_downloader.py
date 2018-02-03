@@ -124,7 +124,7 @@ def start_session(username, password):
     session = requests.Session()
 
     payload = {
-        'action': 'https://www.ancestry.com/secure/login?ti.si=0&ti=0',
+        'action': 'https://www.ancestry.com/secure/login',
         'username': username,
         'password': password,
     }
@@ -133,7 +133,7 @@ def start_session(username, password):
 
     if ( response.status_code == 200 and
          not response.url.startswith("https://www.ancestry.com/secure/Login") and
-         'LOGINNAME=' in response.cookies['VARSESSION']
+         'USERID' in response.cookies['VARS']
     ):
         return session
     else:
