@@ -23,7 +23,7 @@ THIS SOFTWARE.
 # Note, usage of this script is prohibited in the Ancestry Terms and Conditions.
 # USAGE OF THIS SCRIPT IS AT YOUR OWN RISK, AND YOU ACCEPT ALL LIABILTY IN DOING SO!
 #
-# Version 1.4, released 03 May 2017.
+# Version 1.5, released 03 Feb 2018.
 ################################################################################
 
 USERNAME = ""
