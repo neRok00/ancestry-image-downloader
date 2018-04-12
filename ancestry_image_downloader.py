@@ -23,7 +23,7 @@ THIS SOFTWARE.
 # Note, usage of this script is prohibited in the Ancestry Terms and Conditions.
 # USAGE OF THIS SCRIPT IS AT YOUR OWN RISK, AND YOU ACCEPT ALL LIABILTY IN DOING SO!
 #
-# Version 1.5, released 03 Feb 2018.
+# Version 1.6, released 12 Apr 2018.
 ################################################################################
 
 USERNAME = ""
@@ -130,14 +130,20 @@ def start_session(username, password):
     }
 
     response = session.post(payload['action'], data=payload)
-
-    if ( response.status_code == 200 and
-         not response.url.startswith("https://www.ancestry.com/secure/Login") and
-         'USERID' in response.cookies['VARS']
-    ):
+    
+    if check_if_logged_in(response) == True:
         return session
     else:
         raise LoginError()
+        
+def check_if_logged_in(response):
+    if (response.status_code != 200):
+        return False
+    if (response.url.startswith("https://www.ancestry.com/secure/Login")):
+        return False
+    if (not any('USERID' in cookie_val for cookie_val in response.cookies.values())):
+        return False
+    return True
 
 def setup_output(path, file_name='output'):
     """
