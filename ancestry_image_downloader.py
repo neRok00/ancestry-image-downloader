@@ -20,10 +20,11 @@ THIS SOFTWARE.
 # Enter your details between the quotation marks ("), then run the script.
 # For instructions and further details, visit
 # http://neRok00.github.io/ancestry-image-downloader
-# Note, usage of this script is prohibited in the Ancestry Terms and Conditions.
+# Note, usage of this script is prohibited in the Ancestry Terms and Conditions,
+# as current at the time of creation of this script.
 # USAGE OF THIS SCRIPT IS AT YOUR OWN RISK, AND YOU ACCEPT ALL LIABILTY IN DOING SO!
 #
-# Version 1.6, released 12 Apr 2018.
+# Version 1.7, released 08 Jan 2019.
 ################################################################################
 
 USERNAME = ""
@@ -123,13 +124,15 @@ def start_session(username, password):
 
     session = requests.Session()
 
+    login_url = 'https://www.ancestry.com/account/signin/frame/authenticate'
+    referer_url = 'https://www.ancestry.com/account/signin/frame?'
     payload = {
-        'action': 'https://www.ancestry.com/secure/login',
+        'action': login_url,
         'username': username,
         'password': password,
     }
 
-    response = session.post(payload['action'], data=payload)
+    response = session.post(login_url, data=payload, headers={'referer': referer_url})
     
     if check_if_logged_in(response) == True:
         return session
@@ -139,9 +142,7 @@ def start_session(username, password):
 def check_if_logged_in(response):
     if (response.status_code != 200):
         return False
-    if (response.url.startswith("https://www.ancestry.com/secure/Login")):
-        return False
-    if (not any('USERID' in cookie_val for cookie_val in response.cookies.values())):
+    if ('"status":"invalidCredentials"' in response.text):
         return False
     return True
 
