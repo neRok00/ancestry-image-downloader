@@ -24,7 +24,7 @@ THIS SOFTWARE.
 # as current at the time of creation of this script.
 # USAGE OF THIS SCRIPT IS AT YOUR OWN RISK, AND YOU ACCEPT ALL LIABILTY IN DOING SO!
 #
-# Version 1.7, released 08 Jan 2019.
+# Version 1.8, released 11 Jan 2019.
 ################################################################################
 
 USERNAME = ""
@@ -123,6 +123,8 @@ def start_session(username, password):
     """
 
     session = requests.Session()
+    headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
+    session.headers.update(headers)
 
     login_url = 'https://www.ancestry.com/account/signin/frame/authenticate'
     referer_url = 'https://www.ancestry.com/account/signin/frame?'
