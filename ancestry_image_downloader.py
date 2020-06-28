@@ -24,7 +24,7 @@ THIS SOFTWARE.
 # as current at the time of creation of this script.
 # USAGE OF THIS SCRIPT IS AT YOUR OWN RISK, AND YOU ACCEPT ALL LIABILTY IN DOING SO!
 #
-# Version 1.8, released 11 Jan 2019.
+# Version 1.9, released 28 Jun 2020.
 ################################################################################
 
 USERNAME = ""
@@ -277,7 +277,7 @@ def process_apids(apid_matches, *, session, csv_writer, logger):
 
         # Get the api data related to the image.
         logger.info("    > Get information regarding the image...")
-        image_page = session.get('http://interactive.ancestry.com/api/v2/Media/GetMediaInfo/{0}/{1}/{2}'.format(dbid, iid, pid))
+        image_page = session.get('http://www.ancestry.com/interactive/api/v2/Media/GetMediaInfo/{0}/{1}/{2}'.format(dbid, iid, pid))
         if record_page.status_code != 200:
             logger.error("    > There was an error when trying to get the image info.")
             problem_apids.add(apid)
