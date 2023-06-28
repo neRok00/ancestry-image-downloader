@@ -1,0 +1,154 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+	<title>Ancestry Image Downloader</title>
+    
+    <style type="text/css">
+        * { box-sizing: border-box; }
+        body { 
+            padding: 0 1em; font-size: 16px; margin-left: auto; margin-right: auto; max-width: 992px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+        }
+        code { white-space: pre-line; margin-left: 2em; padding: 0.5em 0; display: block;}
+        dt { font-weight: bold;}
+        a, a:visited { color: #0275d8; text-decoration: none; }
+        a:focus, a:hover { color: #014c8c; text-decoration: underline; }
+        h2, h3, h4 { display: inline-block; }
+    </style>
+  
+</head>
+
+<body>
+	<h1>Ancestry Image Downloader</h1>
+    <div style="display:flex; align-items: flex-start;">
+        <div>
+            <p>This Python script downloads all the images from Ancestry.com that are related to records in your family tree.</p>
+            <a href="#warning" style="color: #f0ad4e;">
+                <h2 style="border: 2px solid #f0ad4e; margin-right: 1em; padding: 0.5em;">WARNING! Usage of this script is prohibited in the Ancestry Terms and Conditions. <u>USAGE IS AT YOUR OWN RISK!</u> Read more.</h2>
+            </a>
+            <a href="google.com" onclick="return confirm('Usage of this script is prohibited by the Ancestry Terms and Conditions, as outlined in the FAQ section.\nDo you understand and wish to continue at your own risk, and agree that you accept all liabilty in doing so?');">
+                <h3 style="margin-bottom: 0;">Download the Script</h3>
+            </a>
+        </div>
+        <div style="padding:0 2em; margin-right: 1em; border: 1px solid;">
+            <h2 style="padding:0;">Table of Contents</h2>
+            <ul>
+                <li><a href="#requirements">Requirements</a></li>
+                <li><a href="#instructions">Instructions</a></li>
+                <li><a href="#output">Scripts Output</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <h1 id="requirements">Requirements</h1>
+    <p>To access the records and download the images in your family tree, you must have a current <a href="http://ancestry.com/" target="_blank">Ancestry</a> subscription.</p>
+    <p>Using this script means you will have to violate the Ancestry Terms and Conditions. DO NOT USE THIS SCRIPT IF YOU DO NOT WANT TO. <a href="#warning">Read more.</a></p>
+    <p>The script requires <a href="https://www.python.org/" target="_blank">Python 3</a>, and has been specifically tested with Python 3.5. <a href="https://www.python.org/downloads/" target="_blank">Download Here</a></p>
+    <p>In addition, this script requires the <a href="https://pypi.python.org/pypi/requests/" target="_blank">requests module</a> for Python.</p>
+    <h1 id="instructions">Instructions</h1>
+    <ol>
+        <li>Install Python 3 (<a href="http://www.howtogeek.com/197947/how-to-install-python-on-windows/" target="_blank">Windows instructions</a>)</li>
+        <li>Install the Python 'requests' module (open a command prompt, and type `pip install requests`).</li>
+        <li><a href="https://support.ancestry.com/s/article/Uploading-or-Downloading-GEDCOM-Files-on-Ancestry-1460089692944-2831" target="_blank">Download your gedcom file from Ancestry.</a></li>
+        <li>
+            <a href="google.com" onclick="return confirm('Usage of this script is prohibited by the Ancestry Terms and Conditions, as outlined in the FAQ section.\nDo you understand and wish to continue at your own risk, and agree that you accept all liabilty in doing so?');">
+                Download this script.
+            </a>
+        </li>
+        <li><b>Edit the script just downloaded.</b>
+            <br>
+            Easiest method is to use IDLE.
+            <ul>
+                <li>To open IDLE on Windows, go Start > All Programs > Python 3.5 > IDLE.</li>
+                <li>Then go File > Open and select the script you downloaded.</li>
+                <li>Edit the lines as follows, and File > Save when finised.</li>
+                <li>Keep IDLE open, we will use it to run the script.</li>
+            </ul>
+            Change the 4 lines at the top of the script as follows.
+            <ul style="list-style: outside none none; padding-left: 1em;">
+                <li><b>USERNAME</b>: The username or email you use to sign into Ancestry.</li>
+                <li><b>PASSWORD</b>: The password you use to sign into Ancestry.</li>
+                <li><b>GEDCOM_FILE</b>: The full path to the gedcom file you just downloaded. If the script is in the same folder as the gedcom file, you can just write the file name.</li>
+                <li><b>OUTPUT_DIRECTORY</b>: The path to an empty folder you want to save the images into. If you want to save the images to the same folder as the script, just enter the new folder name.</li>
+            </ul>
+            After entering this information, the file should look similar to the following;
+            <code>USERNAME = "joe_bloggs55"
+                PASSWORD = "secret"
+                GEDCOM_FILE = r"C:\Users\joeb\Downloads\ancestry_gedcom.ged"
+                OUTPUT_DIRECTORY = r"C:\Users\joeb\Documents\AncestryImageDownloads"
+            </code>
+            Or if the script and gedcom file are in the same folder, it could look like this;
+            <code>USERNAME = "joe_bloggs55"
+                PASSWORD = "secret"
+                GEDCOM_FILE = r"ancestry_gedcom.ged"
+                OUTPUT_DIRECTORY = r"AncestryImageDownloads"
+            </code>
+        </li>
+        <li>
+            <b>Run the script.</b>
+            <br>
+            The easiest method is via IDLE. 
+            <ul>
+                <li>If you closed IDLE after the previous step, open IDLE on Windows via Start > All Programs > Python 3.5 > IDLE.<br>Then go File > Open and select the script you just edited.</li>
+                <li>In the IDLE windows for the script, go Run > Run Module.</li>
+            </ul>
+            Information about the program will now be written in the other IDLE window, the 'Shell' window.
+        </li>
+        <li>Review the information the script writes in the 'Shell' as the script proceeds. If there are any problems, the script will let you know what to fix.</li>
+        <li>If there are no problems with your gedcom file, when the script is ready to start downloading, you will be prompted to "Agree" to the warning.
+            <br>Up to this point, the script has not accessed the internet, nor Ancestry.com.
+            <br><strong>If you agree, you may be violating the Ancestry Terms and Conditions. <a href="#warning">Read more.</a></strong>
+        </li>
+        <li>Wait for the script to finish. For information on how much it will download, refer to the <a href="#download-amount">relevant FAQ section</a>. You can stop the script at any time by pressing Ctrl+C, or closing the script/IDLE.</li>
+        <li>Once the script is finished, it will tell you how many errors were encountered (if any) at the end. Instructions for reviewing these errors are below.</li>
+    </ol>
+    <h1 id="output">Scripts Output</h1>
+    <p>After the script is finished, a log and CSV will have been created. The images will have been saved into folders that correspond to their database.</p>
+    <p>The CSV file can be opened in Microsoft Excel, or a similar program (even Notepad). The CSV file has the following columns;
+        <ul>
+            <li>apid: The '_APID' as per the gedcom.</li>
+            <li>indiv: The portion of the APID before the comma.</li>
+            <li>dbid: The portion of the APID between the comma and colons. This refers to a specifc Ancestry database.</li>
+            <li>pid: The portion of the APID after the colons. This refers to the record id with the aforementioned database.</li>
+            <li>sour: The source (SOUR) id from the gedcom file that this APID was associated with.</li>
+            <li>image: The image file name, which is also the image id number on the Ancestry website.</li>
+            <li>extension: The file extension of the image, eg 'jpg'.</li>
+        </ul>
+        The CSV file can then be used by plugins or other scripts for linking sources to images in other family tree programs. <strong>This functionallity is not provided by this script.</strong>
+    </p>
+    <p>
+        The log file can be opened in a text editor such as Notepad. You can review it for any errors (search the file for the word error and/or aborted).<br>
+        You can investigate why a particular APID did not download by visiting its record page. An APID such as "1,234::567890" becomes the URL http://search.ancestry.com/cgi-bin/sse.dll?indiv=<b>1</b>&dbid=<b>234</b>&h=<b>567890</b>.
+    </p>
+    <h1 id="faq">FAQ</h1>
+    <dl>
+        <dt id="warning">Is this allowed by Ancestry?</dt>
+        <dd>
+            <a href="http://www.ancestry.com/cs/legal/termsandconditions">The Ancestry.com.au Terms and Conditions</a> state the following (your local Ancestry site may be different);
+            <br>"<i>[you may] download Content only as search results relevant to that research.</i>"
+            <br>"<i>you may access the Websites only personally with an individual browser or mobile application (bots, crawlers, spiders, scraping and other automatic access tools are prohibited)</i>".
+            <br><b style="color: #d9534f;">This script is probably regarded as a "bot", "scraper", and "automatic access tool", and is thus prohibited</b>.
+            <br>Additionally the T&C states "<i>Violation of this limited use license may result in immediate termination of your membership and may result in legal action against you.</i>"
+            <br>
+            <h4 style="inline">USAGE OF THIS SCRIPT IS AT YOUR OWN RISK, AND YOU ACCEPT ALL LIABILTY IN DOING SO!</h4>
+        </dd>
+        <dt>Will this script give me a virus, or steal my login details?</dt>
+        <dd>No. The only website this script ever 'talks to' is Ancestry.com. But don't take my word for it, review the <a href="" target="_blank">source code</a> yourself.</dd>
+        <dt>What does the script do exactly?</dt>
+        <dd>First it checks your gedcom file is suitable (not from another program), and then finds all the Sources with Ancestry Records (_APID lines in the file). Then it logs into Ancestry with your login details, and gets the record information using the APID. The record information contains the image information, which is then used to download the image to your computer. A log and CSV file are created in the process, for your information.</dd>
+        <dt id="download-amount">How much will this download, and how long will it take?</dt>
+        <dd>It is estimated that per 1000 APID's in a gedcom file, this script will download about 300 images, which will take about 250MB. On ADSL2, this will take about 1 hour.</dd>
+        <dt>I thought a lot more images would have been downloaded...</dt>
+        <dd>Some records on Ancestry do not have images.<br>Additionally, 1 census record could cover a whole family of 10 people. If you have used this 1 census record as proof of name, birth, gender, residence, etc, a single record (APID) could have 4 references per person. If this is true for all 10 people in the family/census-record, then 1 image can infact be related to 40 APID matches in the gedcom file.<br>Lastly, there may have been some errors. Be sure to review your logs as mentioned elsewhere on this page.</dd>
+        <dt>Why isn't this a nice and easy to use program?</dt>
+        <dd>This script is provided out of good will, but the extent of that good will is limited.</dd>
+        <dt>Can I get help to use this script, or fix errors?</dt>
+        <dd>No. This script is provided as-is (refer the license at the top of the script file). The script outputs helpful errors, which you can review and try to solve yourself.</dd>
+    </dl>
+    
+</body>
+
+</html>
