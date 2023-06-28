@@ -17,6 +17,16 @@
         a:focus, a:hover { color: #014c8c; text-decoration: underline; }
         h2, h3, h4 { display: inline-block; }
     </style>
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-19483317-3', 'auto');
+        ga('send', 'pageview');
+    </script>
   
 </head>
 
@@ -25,12 +35,21 @@
     <div style="display:flex; align-items: flex-start;">
         <div>
             <p>This Python script downloads all the images from Ancestry.com that are related to records in your family tree.</p>
-            <a href="#warning" style="color: #f0ad4e;">
-                <h2 style="border: 2px solid #f0ad4e; margin-right: 1em; padding: 0.5em;">WARNING! Usage of this script is prohibited in the Ancestry Terms and Conditions. <u>USAGE IS AT YOUR OWN RISK!</u> Read more.</h2>
+            <a href="#warning" style="color: #d9534f;">
+                <h2 style="border: 3px solid #d9534f; margin-right: 1em; padding: 0.5em; text-align: center;">WARNING!<br><small>Usage of this script is prohibited in the Ancestry Terms and Conditions.</small><br><u>USAGE IS AT YOUR OWN RISK!</u><br><small>Click to Read More</small></h2>
             </a>
-            <a href="google.com" onclick="return confirm('Usage of this script is prohibited by the Ancestry Terms and Conditions, as outlined in the FAQ section.\nDo you understand and wish to continue at your own risk, and agree that you accept all liabilty in doing so?');">
-                <h3 style="margin-bottom: 0;">Download the Script</h3>
+            <a href="https://github.com/neRok00/ancestry-image-downloader/raw/master/ancestry_image_downloader.py" download target="_blank" onclick="return confirm('Usage of this script is prohibited by the Ancestry Terms and Conditions, as outlined in the FAQ section.\nDo you understand and wish to continue at your own risk, and agree that you accept all liabilty in doing so?');">
+                <h3 style="margin-bottom: 0;">Download the Script (Save-As)</h3>
             </a>
+            <span style="margin:0 1em;">-</span>
+            <a href="http://paypal.me/ShaunWilsonAU" target="_blank"><h3 style="margin-bottom: 0;">Donate as a Thank You (Paypal)</h3></a>
+            <p style="color:#5cb85c; font-weight:bold;">A note to Ancestry: If you provided your paying users a means to download the images in bulk
+            like they have been asking for - see  
+            <a href="http://familyhistorydaily.com/genealogy-help-and-how-to/stop-saving-records-to-your-ancestry-tree-until-you-read-this/" target="_blank">(1)</a>
+            <a href="http://genealogy.stackexchange.com/questions/10213/how-to-download-images-from-ancestry-com-trees" target="_blank">(2)</a>
+            <a href="http://sqlitetoolsforrootsmagic.wikispaces.com/Getting%20Source%20and%20Other%20Images%20from%20Ancestry.com" target="_blank">(3)</a>
+            <a href="http://www.geneamusings.com/2011/06/dear-randy-how-best-to-download.html" target="_blank">(4)</a> 
+            - and without having to buy an additional and now discontinued program (FTM'16), they wouldn't have to resort to using scripts like this one.</p>
         </div>
         <div style="padding:0 2em; margin-right: 1em; border: 1px solid;">
             <h2 style="padding:0;">Table of Contents</h2>
@@ -54,8 +73,8 @@
         <li>Install the Python 'requests' module (open a command prompt, and type `pip install requests`).</li>
         <li><a href="https://support.ancestry.com/s/article/Uploading-or-Downloading-GEDCOM-Files-on-Ancestry-1460089692944-2831" target="_blank">Download your gedcom file from Ancestry.</a></li>
         <li>
-            <a href="google.com" onclick="return confirm('Usage of this script is prohibited by the Ancestry Terms and Conditions, as outlined in the FAQ section.\nDo you understand and wish to continue at your own risk, and agree that you accept all liabilty in doing so?');">
-                Download this script.
+            <a href="https://github.com/neRok00/ancestry-image-downloader/raw/master/ancestry_image_downloader.py" download target="_blank" onclick="return confirm('Usage of this script is prohibited by the Ancestry Terms and Conditions, as outlined in the FAQ section.\nDo you understand and wish to continue at your own risk, and agree that you accept all liabilty in doing so?');">
+                Download this script. You may have to do a Save-As.
             </a>
         </li>
         <li><b>Edit the script just downloaded.</b>
@@ -136,7 +155,7 @@
             <h4 style="inline">USAGE OF THIS SCRIPT IS AT YOUR OWN RISK, AND YOU ACCEPT ALL LIABILTY IN DOING SO!</h4>
         </dd>
         <dt>Will this script give me a virus, or steal my login details?</dt>
-        <dd>No. The only website this script ever 'talks to' is Ancestry.com. But don't take my word for it, review the <a href="" target="_blank">source code</a> yourself.</dd>
+        <dd>No. The only website this script ever 'talks to' is Ancestry.com. But don't take my word for it, review the <a href="https://github.com/neRok00/ancestry-image-downloader/blob/master/ancestry_image_downloader.py" target="_blank">source code</a> yourself.</dd>
         <dt>What does the script do exactly?</dt>
         <dd>First it checks your gedcom file is suitable (not from another program), and then finds all the Sources with Ancestry Records (_APID lines in the file). Then it logs into Ancestry with your login details, and gets the record information using the APID. The record information contains the image information, which is then used to download the image to your computer. A log and CSV file are created in the process, for your information.</dd>
         <dt id="download-amount">How much will this download, and how long will it take?</dt>
@@ -144,7 +163,7 @@
         <dt>I thought a lot more images would have been downloaded...</dt>
         <dd>Some records on Ancestry do not have images.<br>Additionally, 1 census record could cover a whole family of 10 people. If you have used this 1 census record as proof of name, birth, gender, residence, etc, a single record (APID) could have 4 references per person. If this is true for all 10 people in the family/census-record, then 1 image can infact be related to 40 APID matches in the gedcom file.<br>Lastly, there may have been some errors. Be sure to review your logs as mentioned elsewhere on this page.</dd>
         <dt>Why isn't this a nice and easy to use program?</dt>
-        <dd>This script is provided out of good will, but the extent of that good will is limited.</dd>
+        <dd>This script is provided out of good will, but the extent of that good will is limited. You can <a href="http://paypal.me/ShaunWilsonAU" target="_blank">Donate via Paypal</a> to motivate the author further.</dd>
         <dt>Can I get help to use this script, or fix errors?</dt>
         <dd>No. This script is provided as-is (refer the license at the top of the script file). The script outputs helpful errors, which you can review and try to solve yourself.</dd>
     </dl>
